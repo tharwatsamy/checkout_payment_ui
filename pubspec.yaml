@@ -61,7 +61,7 @@ flutter:
 
   
   assets:
-    - assets/images/arrow.svg
+    - assets/images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

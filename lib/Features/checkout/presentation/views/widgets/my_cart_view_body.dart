@@ -1,6 +1,7 @@
 import 'package:checkout_payment_ui/Features/checkout/presentation/views/widgets/cart_info_item.dart';
 import 'package:checkout_payment_ui/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:checkout_payment_ui/core/utils/styles.dart';
+import 'package:checkout_payment_ui/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +17,7 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          Image.asset('assets/images/basket_image.png'),
+          Expanded(child: Image.asset('assets/images/basket_image.png')),
           const SizedBox(
             height: 25,
           ),
@@ -43,7 +44,14 @@ class MyCartViewBody extends StatelessWidget {
             height: 34,
             color: Color(0xffC7C7C7),
           ),
-          const TotalPrice(title: 'Total', value: r'$50.97')
+          const TotalPrice(title: 'Total', value: r'$50.97'),
+          const SizedBox(
+            height: 16,
+          ),
+          const CustomButton(),
+          const SizedBox(
+            height: 12,
+          ),
         ],
       ),
     );

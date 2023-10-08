@@ -1,5 +1,9 @@
+import 'package:checkout_payment_ui/Features/checkout/presentation/views/widgets/card_info_widget.dart';
+import 'package:checkout_payment_ui/Features/checkout/presentation/views/widgets/payment_info_item.dart';
+import 'package:checkout_payment_ui/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:checkout_payment_ui/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ThankYouCard extends StatelessWidget {
   const ThankYouCard({
@@ -51,31 +55,18 @@ class ThankYouCard extends StatelessWidget {
               title: 'To',
               value: 'Sam Louis',
             ),
+            const Divider(
+              height: 60,
+              thickness: 2,
+            ),
+            const TotalPrice(title: 'Total', value: r'$50.97'),
+            const SizedBox(
+              height: 30,
+            ),
+            const CardInfoWidget()
           ],
         ),
       ),
-    );
-  }
-}
-
-class PaymentItemInfo extends StatelessWidget {
-  const PaymentItemInfo({super.key, required this.title, required this.value});
-  final String title, value;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Styles.style18,
-        ),
-        Text(
-          value,
-          style: Styles.styleBold18,
-        )
-      ],
     );
   }
 }

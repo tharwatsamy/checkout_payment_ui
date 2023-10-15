@@ -1,11 +1,12 @@
 import 'details.dart';
 
 class AmountModel {
-  String? total;
-  String? currency;
-  Details? details;
+  final String? total;
+  final String? currency;
+  final Details? details;
 
-  AmountModel({this.total, this.currency, this.details});
+  AmountModel(
+      {required this.total, required this.currency, required this.details});
 
   factory AmountModel.fromJson(Map<String, dynamic> json) => AmountModel(
         total: json['total'] as String?,

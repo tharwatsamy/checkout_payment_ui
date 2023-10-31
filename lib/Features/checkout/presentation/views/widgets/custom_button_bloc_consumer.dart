@@ -6,7 +6,9 @@ import 'package:checkout_payment_ui/Features/checkout/data/models/item_list_mode
 import 'package:checkout_payment_ui/Features/checkout/data/models/item_list_model/item_list_model.dart';
 import 'package:checkout_payment_ui/Features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:checkout_payment_ui/Features/checkout/presentation/manger/cubit/payment_cubit.dart';
+import 'package:checkout_payment_ui/Features/checkout/presentation/views/my_cart_view.dart';
 import 'package:checkout_payment_ui/Features/checkout/presentation/views/thank_you_view.dart';
+import 'package:checkout_payment_ui/core/functions/get_transctions.dart';
 import 'package:checkout_payment_ui/core/utils/api_keys.dart';
 import 'package:checkout_payment_ui/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -95,8 +97,17 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           );
         },
         onError: (error) {
-          log("onError: $error");
-          Navigator.pop(context);
+          SnackBar snackBar = SnackBar(content: Text(error.toString()));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const MyCartView();
+            }),
+            (route) {
+              return false;
+            },
+          );
         },
         onCancel: () {
           print('cancelled:');
@@ -104,31 +115,5 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         },
       ),
     ));
-  }
-
-  ({AmountModel amount, ItemListModel itemList}) getTransctionsData() {
-    var amount = AmountModel(
-        total: "100",
-        currency: 'USD',
-        details: Details(shipping: "0", shippingDiscount: 0, subtotal: '100'));
-
-    List<OrderItemModel> orders = [
-      OrderItemModel(
-        currency: 'USD',
-        name: 'Apple',
-        price: "4",
-        quantity: 10,
-      ),
-      OrderItemModel(
-        currency: 'USD',
-        name: 'Apple',
-        price: "5",
-        quantity: 12,
-      ),
-    ];
-
-    var itemList = ItemListModel(orders: orders);
-
-    return (amount: amount, itemList: itemList);
   }
 }
